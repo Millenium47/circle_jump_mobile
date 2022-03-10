@@ -7,12 +7,14 @@
 [node name="GameOverScreen" instance=ExtResource( 3 )]
 
 [node name="Label" parent="MarginContainer/VBoxContainer" index="0"]
+margin_bottom = 2.0
 text = "Game Over"
 
 [node name="Buttons" parent="MarginContainer/VBoxContainer" index="1"]
-margin_bottom = 328.0
+margin_top = 152.0
+margin_bottom = 252.0
 
-[node name="Return" type="TextureButton" parent="MarginContainer/VBoxContainer/Buttons" index="0" groups=["buttons"]]
+[node name="Home" type="TextureButton" parent="MarginContainer/VBoxContainer/Buttons" index="0" groups=["buttons"]]
 margin_left = 95.0
 margin_right = 195.0
 margin_bottom = 100.0
@@ -25,5 +27,5 @@ margin_bottom = 100.0
 texture_normal = ExtResource( 2 )
 
 [node name="Buttons2" parent="MarginContainer/VBoxContainer" index="2"]
-margin_top = 478.0
-margin_bottom = 478.0
+margin_top = 402.0
+margin_bottom = 402.0
