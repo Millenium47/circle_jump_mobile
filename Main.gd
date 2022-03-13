@@ -6,10 +6,12 @@ var Jumper = preload("res://objects/Jumper.tscn")
 
 var player
 var score = 0 setget set_score
+var highscore = 0
 var level = 0
  
 func _ready():
 	randomize()
+	load_score()
 	$HUD.hide()
 	
 func new_game():
@@ -44,9 +46,12 @@ func _on_Jumper_captured(object):
 	set_score(score + 1)
 
 func _on_Jumper_died():
+	if score > highscore:
+		highscore = score
+		save_score()
 	get_tree().call_group("circles", "implode")
 	$HUD.hide()
-	$Screens.game_over()
+	$Screens.game_over(score, highscore)
 	if Settings.enable_music:
 		$Music.play()
 	
@@ -56,8 +61,16 @@ func set_score(new_score):
 	if score > 0 and score % Settings.circles_per_level == 0:
 		level += 1
 		$HUD.show_message("Level %s" % str(level))
-	
 
+func load_score():
+	var f = File.new()
+	if f.file_exists(Settings.score_file):
+		f.open(Settings.score_file, File.READ)
+		highscore = f.get_var()
+		f.close()
 
-func set_tween(object, key):
-	pass # Replace with function body.
+func save_score():
+	var f = File.new()
+	f.open(Settings.score_file, File.WRITE)
+	f.store_var(highscore)
+	f.close()	

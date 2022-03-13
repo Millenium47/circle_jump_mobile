@@ -96,7 +96,7 @@ func set_tween(orbject=null, key=null):
 	move_tween.start()
 	
 # taken from Godot docs
-func draw_circle_arc_poly(center, radius, angle_from, angle_to, color):
+func draw_circle_arc_poly(center, _radius, angle_from, angle_to, color):
 	var nb_points = 32
 	var points_arc = PoolVector2Array()
 	points_arc.push_back(center)
@@ -104,5 +104,5 @@ func draw_circle_arc_poly(center, radius, angle_from, angle_to, color):
 
 	for i in range(nb_points + 1):
 		var angle_point = angle_from + i * (angle_to - angle_from) / nb_points - PI/2
-		points_arc.push_back(center + Vector2(cos(angle_point), sin(angle_point)) * radius)
+		points_arc.push_back(center + Vector2(cos(angle_point), sin(angle_point)) * _radius)
 	draw_polygon(points_arc, colors)
